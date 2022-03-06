@@ -1,17 +1,36 @@
-const { test, expect } = require("@jest/globals");
 const Engineer = require("../lib/Engineer");
 
-describe("testing the fields and methods of Engineer class",()=>{
-    test("create empty engineer object",()=> {
-        const engineer = new Engineer();
-        expect(typeof engineer).toBe("object");
+describe("Engineer", ()=>{
+
+    describe("getName", ()=> {
+        it("should return the name of the parent object",() => {
+
+            const name = "Emmy"
+            expect(name).toEqual(Engineer.name);
+        });
     });
-    test("Engineer.getGithub() return engineer's github", ()=>{
-        const engineer = new Engineer(
-            "Bob",
-            "#1234",
-            "github.com/username"
-        );
-        expect(engineer.getGithub()).toBe("github.com/username");
+
+    describe("getId",()=> {
+        it("should return the ID number of the parent object", ()=> {
+
+            const id = 3
+            expect(Id).toEqual(Engineer.id);
+        });
     });
+
+    describe("getEmail",()=> {
+        it("should return the email address of the parent Object", ()=> {
+
+            const email = "engineer@gmail.com"
+            expect(email).toEqual(Engineer.email);
+        });
+    });
+    describe("getRole", ()=> {
+        it("should return the role of the parent object", ()=> {
+
+            const role = "Employee"
+            expect(role).toEqual(Employee.role);
+        });
+    });
+    
 });
