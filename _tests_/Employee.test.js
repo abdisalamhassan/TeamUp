@@ -1,34 +1,26 @@
+const { TestWatcher } = require("@jest/core");
 const Employee = require("../lib/Employee");
 
-describe("Employee", () =>{
+const Employee = new Employee ('Connor','0236651', 'connor.023@gmail.com');
 
-    describe("getName", ()=> {
-        it("should return the name of the parent Object", ()=> {
+test('test if we can get the constructor values for the employee object', ()=> {
+    expect(employee.name).toBe('Connor')
+    expect(employee.id).toBe('0236651');
+    expect(employee.email).toBe('connor.023@gmail.com');
+});
 
-            const name = "Emily"
-            expect(name).toEqual(Employee.name);
-        });
-    });
+test ('test if we can get the name from the getName() method',()=> {
+    expect(employee.getName()).toBe('Connor');
+});
 
-   describe("getId", () => {
-       it("should return the ID number of the parent object", () =>{
+test ('test if we can get the id from the getiD() method',()=> {
+    expect(employee.getiD()).toBe('0236651');
+});
 
-        const id = 1
-        expect(id).toEqual(Employee.id);
-       });
-   });
+test ('test if we can get the email from the getEmail() method',()=> {
+    expect(employee.getEmail()).toBe('connor.023@gmail.com');
+});
 
-   describe("getEmail", ()=> {
-       it("should return the email address of the parent object", ()=> {
-
-        const email = "employee@gmail.com"
-        expect(email).toEqual(Employee.email);
-       });
-   });
-   describe("getRole",()=> {
-       it("should return the role of the parent object",()=>{
-
-        const
-       });
-   });
+test ('test if we can get the role from the getRole() method',()=> {
+    expect(employee.getRole()).toBe('Employee');
 });
