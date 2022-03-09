@@ -29,7 +29,8 @@ THEN I exit the application, and the HTML is generated
 
 
 ### Video
-![]
+![Screen_Recording_2022-03-08_at_7_34_52_PM_AdobeCreativeCloudExpress](https://user-images.githubusercontent.com/95972020/157360792-4b636cf6-c079-423a-961e-441e5931198a.gif)
+
 
 ### Credits
 
