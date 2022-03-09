@@ -6,15 +6,15 @@ const generateSite =require('./src/generate-site');
 const fs = require('fs');
 const util = require('util');
 const path = require("path");
-const OUTPUT_DIR = path.resolve(_dirname,"output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
-const teamMember = [];
+//const OUTPUT_DIR = path.resolve(__dirname,"output");
+//const outputPath = path.join(OUTPUT_DIR, "team.html");
+const teamMembers = [];
 
-const promptInfo = () => {
+const promptManager = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'name1',
+            name: 'name',
             message: 'What is your name?',
             validate: nameInput => {
                 if(nameInput){
@@ -28,7 +28,7 @@ const promptInfo = () => {
         {
             type: 'input',
             name:'employeeId',
-            message: "What is your Employee id?",
+            message: "What is your Employee Id?",
             validate: employeeId => {
                 if(employeeId){
                     return true;
@@ -40,7 +40,7 @@ const promptInfo = () => {
         },
         {
             type: 'input',
-            name: 'email1',
+            name: 'email',
             message: 'What is your email?',
             validate: email => {
                 if(email){
@@ -51,10 +51,24 @@ const promptInfo = () => {
                 }
             }
         },
+        {
+            type: 'input',
+            name: 'OfficeNumber',
+            message: 'What is your Office Number?',
+            validate: OfficeNumber => {
+                if(OfficeNumber){
+                    return true;
+                } else { 
+                    console.log('You must enter an Office Number to continue!');
+                    return false;
+                }
+            }
+        }
+
         
     ]).then(answers=> { 
         console.log(answers);
-        const manager = new Manager(answers.name, answers.employeeId, answers.email);
+        const manager = new Manager(answers.name, answers.employeeId, answers.email,answers.OfficeNumber);
         teamMembers.push(manager);
         promptMenu();
     })
@@ -72,6 +86,9 @@ const promptMenu = ()=> {
             switch(userChoice.menu) {
                 case "add an engineer":
                     promptEngineer();
+                    break;
+                    case "add an intern":
+                        promptIntern();
                     break;
                     default:
                         buildTeam();
@@ -163,7 +180,7 @@ const promptIntern = () => {
         },
         {
             type: 'input',
-            name:'name',
+            name:'employeeId',
             message: 'Enter your Employee ID',
             validate: employeeId=> {
                 if(employeeId){
@@ -203,8 +220,8 @@ const promptIntern = () => {
 
     ]).then(answers => {
         console.log(answers);
-        const engineer = new Intern(answers.name,answers.employeeId,answers.school,answers.email);
-        teamMembers.push(Intern);
+        const intern = new Intern(answers.name,answers.employeeId,answers.email,answers.school);
+        teamMembers.push(intern);
         promptMenu();
     })
 };
@@ -212,10 +229,10 @@ const promptIntern = () => {
 const buildTeam = () => {
     console.log( `DONE BUILDING YOUR TEAM`);
 
-    if (!fs.existsSync(OUTPUT_DIR)) {
-        fs.mkdirSync(OUTPUT_DIR)
-    }
-    fs.writeFileSync(outputPath,generateSite(teamMembers), "utf-8");
+    //if (!fs.existsSync(OUTPUT_DIR)) {
+    //    fs.mkdirSync(OUTPUT_DIR)
+    //}
+    fs.writeFileSync("./dist/team.html",generateSite(teamMembers));
 }
 
 promptManager();

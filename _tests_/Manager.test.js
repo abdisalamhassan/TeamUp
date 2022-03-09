@@ -1,4 +1,3 @@
-const { TestWatcher } = require('@jest/core');
 const Manager = require('../lib/manager');
 const manager = new Manager('Mikey', '0247751','michelangelo.024@gmail.com');
 
