@@ -1,29 +1,33 @@
+//generates html for manager
 const generateTeam = (team) => {
-    console.log(team);
-    const html=[];
-    const generateManager = manager => {
-        console.log(manager);
-        let ManagerHtml = `
+  console.log(team);
+  const html = [];
+  const generateManager = (manager) => {
+    console.log(manager);
+    let ManagerHtml = `
         <div class= "card" style = "width: 18rem;">
          <div class = "card-header">
          ${manager.name} <br/>
-         <i class= "fas fa-mug-hot"></i>Manager</div>
+         <i class="fa-solid fa-mug-saucer"></i>Manager</div>
          <ul class="list-group list-flush">
          <li class="list-group-item">ID: ${manager.id}</li>
          <li class="list-group-item">Email: <span id="email"><a href="mailto:${manager.email}">${manager.email}</a></span></li>
+         <li class="list-group-item">ID: ${manager.department}</li>
          <li class="list-group-item">Office Number: ${manager.officeNumber}</li>
          </ul>
          </div>
         `;
-        html.push(ManagerHtml);
-    }
-    const generateEngineer = engineer => {
-        console.log(engineer);
-        let engineerHTML = `
+    html.push(ManagerHtml);
+  };
+
+  // generates html for engineer
+  const generateEngineer = (engineer) => {
+    console.log(engineer);
+    let engineerHTML = `
         <div class ="card" style="width: 18rem;">
          <div class="card-header">
          ${engineer.name}<br/>
-         <i class="fas fa-glasses"></i>Engineer</div>
+         <i class="fa-regular fa-alien-8bit"></i>Engineer</div>
          <ul class="list-group list group-flush">
          <li class="list-group-item">ID: ${engineer.id}</li>
          <li class="list-group-item">Email: <span id="email"><a href="mailto${engineer.email}">${engineer.email}</a></span></li>
@@ -32,40 +36,47 @@ const generateTeam = (team) => {
         </div>
          `;
 
-        html.push(engineerHTML);
-    }
-const generateIntern = intern =>{
+    html.push(engineerHTML);
+  };
+
+  //generates html for intern
+  const generateIntern = (intern) => {
     console.log(intern);
     let internHTML = `
     <div class="card" style= "width: 18rem;">
      <div class="card-header">
      ${intern.name}<br/>
-     <i class= "fas fa-user-graduate"></i>Intern</div>
+     <i class="fa-thin fa-typewriter"></i>Intern</div>
      <ul class="list-group list-group-flush">
      <li class="list-group-item">ID: ${intern.id}</li>
      <li class="list-group-item">Email:<span id="email"><a href="mailto:${intern.email}">${intern.email}</a></span></li>
      <li class="list-group-item">School: ${intern.school}</li>
+     <li class="list-group-item">ID: ${intern.study}</li>
      </ul>
      </div>
     `;
     html.push(internHTML);
- }
+  };
 
- for(let i=0; i< team.length; i++) {
-     if(team[i].getRole()=== "Manager"){
-         generateManager(team[i]);
-     }
-     if(team[i].getRole()=== "Engineer"){
-         generateEngineer(team[i]);
-     }
-     if(team[i].getRole()=== "Intern"){
-         generateIntern(team[i]);
-     }
- }
- return html.join(''); 
-}
+  //creates loop for all employees
+  for (let i = 0; i < team.length; i++) {
+    if (team[i].getRole() === "Manager") {
+      generateManager(team[i]);
+    }
+    if (team[i].getRole() === "Engineer") {
+      generateEngineer(team[i]);
+    }
+    if (team[i].getRole() === "Intern") {
+      generateIntern(team[i]);
+    }
+  }
 
-module.exports= team => {
+  return html.join("");
+};
+
+// export function to generate page
+module.exports = (team) => {
+  
     return `
     <!DOCTYPE html>
     <html lang="en">
